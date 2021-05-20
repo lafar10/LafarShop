@@ -17,11 +17,16 @@ use Illuminate\Http\UploadedFile;
 
 class AdminController extends Controller
 {
+
+    #############  Dashboard ##############
+
     public function dashboard()
     {
         return view('admin.dashboard');
     }
 
+
+    #############  Reviews  ##############
 
     public function reviews()
     {
@@ -31,7 +36,6 @@ class AdminController extends Controller
 
 
     ////////////////////// Category Manage //////////////////
-
 
 
     public function categories()
@@ -45,6 +49,8 @@ class AdminController extends Controller
         return view('admin.cate_create');
     }
 
+    #############  Ajouter Categorie ##############
+
     public function category_store(Request $request)
     {
 
@@ -55,6 +61,8 @@ class AdminController extends Controller
 
         $categories->save();
     }
+
+    #############  Modifier Categorie ##############
 
     public function category_edit($id)
     {
@@ -78,6 +86,9 @@ class AdminController extends Controller
         return redirect()->route('get.admin.categories')->with('toast_success', 'Updated With successfully !!');;
     }
 
+
+    #############  Supprimer Categorie ##############
+
     public function category_delete(Request $request)
     {
         $categories = Categorie::find($request->input('categorie_id'));
@@ -88,6 +99,9 @@ class AdminController extends Controller
         $categories->delete();
         return redirect()->route('get.admin.categories')->with('toast_success', 'Deleted With successfully !!');;
     }
+
+
+    #############  Rechercher  Categorie ##############
 
     public function category_search(Request $request)
     {
@@ -104,6 +118,7 @@ class AdminController extends Controller
 
     ////////////////////// Cart Manage //////////////////
 
+    #############  Panier ##############
 
     public function carts()
     {
@@ -111,6 +126,7 @@ class AdminController extends Controller
         return view('admin.carts', compact('carts'));
     }
 
+    #############  Modifier Panier ##############
 
     public function cart_edit($id)
     {
@@ -133,6 +149,8 @@ class AdminController extends Controller
         $carts->update($request->all());
         return redirect()->route('get.admin.carts')->with('toast_success', 'Updated With successfully !!');;
     }
+
+    #############  Supprimer Panier ##############
 
     public function cart_delete(Request $request)
     {
@@ -174,6 +192,8 @@ class AdminController extends Controller
         return view('admin.add_products');
     }
 
+    #############  Rechrcher Produit ##############
+
     public function search_product(Request $request)
     {
         $search = $request->input('search_product');
@@ -187,6 +207,8 @@ class AdminController extends Controller
 
         return redirect()->route('get.admin.products')->with('products', $products);
     }
+
+    #############  Ajouter Produit ##############
 
     public function product_store(Request $request)
     {
@@ -240,8 +262,10 @@ class AdminController extends Controller
         ]);
 
 
-        return redirect()->route('get.products')->with('toast_success','Created With Successfully!!');
+        return redirect()->route('get.products')->with('toast_success', 'Created With Successfully!!');
     }
+
+    #############  Modifier Produit ##############
 
     public function edit_product($id)
     {
@@ -301,6 +325,8 @@ class AdminController extends Controller
     }
 
 
+    #############  Supprimer Produit ##############
+
     public function delete_product($id)
     {
         $products = Product::find($id);
@@ -312,6 +338,8 @@ class AdminController extends Controller
         $products->delete();
         return redirect()->back()->with('toast_success', 'Deleted With Successfully !!');
     }
+
+    #############  Rechercher Produit ##############
 
     public function product_search(Request $request)
     {
@@ -335,12 +363,15 @@ class AdminController extends Controller
         return view('admin.order', compact('orders'));
     }
 
+    #############  Liste single Command   ##############
+
     public function check_single_order()
     {
         $orders = Order::where('etat', 'off')->get();
         return view('admin.check_order')->with('orders', $orders);
     }
 
+    #############  Rechercher Command ##############
 
     public function search_order_check(Request $request)
     {
@@ -356,6 +387,8 @@ class AdminController extends Controller
 
         return redirect()->route('admin.check_order')->with('orders', $orders);
     }
+
+    #############  Modifier Command ##############
 
     public function edit_check_order($id)
     {
@@ -406,7 +439,7 @@ class AdminController extends Controller
     }
 
 
-
+    #############  Supprimer Command ##############
 
     public function delete_check_order($id)
     {
@@ -424,6 +457,7 @@ class AdminController extends Controller
 
     ////////////////////  Multi Order Manage /////////////////////////
 
+    #############  Liste Multi Command ##############
 
     public function check_orders()
     {
@@ -438,6 +472,7 @@ class AdminController extends Controller
         return view('admin.check_multi_order')->with('orders', $orders);
     }
 
+    #############  Rechrcher Multi Command ##############
 
     public function search_mulit_order(Request $request)
     {
@@ -452,6 +487,8 @@ class AdminController extends Controller
 
         return view('admin.multi_orders')->with('checks', $checks);
     }
+
+    #############  Modifier Multi Command ##############
 
     public function edit_multi_order($id)
     {
@@ -500,6 +537,8 @@ class AdminController extends Controller
         return redirect()->route('get.admin.check_orders')->with('toast_success', 'Order Was Updated With Successfully !!');
     }
 
+    #############  Supprimer Multi Command ##############
+
     public function delete_multi_order($id)
     {
         $checks = Check::find($id);
@@ -511,6 +550,8 @@ class AdminController extends Controller
         $checks->delete();
         return redirect()->back()->with('toast_success', 'Order Was Deleted With Successfully !!');
     }
+
+    #############  Liste Multi Command Non Confirmer ##############
 
     public function get_command_products(Request $request)
     {
@@ -524,11 +565,15 @@ class AdminController extends Controller
 
     ////////////////////// Users Manage //////////////////
 
+    #############  Liste Users ##############
+
     public function users()
     {
         $users = User::all();
         return view('admin.users', compact('users'));
     }
+
+    #############  Modifier Users ##############
 
     public function user_edit($id)
     {
@@ -561,6 +606,8 @@ class AdminController extends Controller
         return redirect()->route('get.admin.users')->with('toast_success', 'Updated With successfully !!');;
     }
 
+    #############  Supprimer Users ##############
+
     public function user_delete(Request $request)
     {
         $users = User::find($request->input('user_id'));
@@ -571,6 +618,8 @@ class AdminController extends Controller
         $users->delete();
         return redirect()->route('get.admin.users')->with('toast_success', 'Deleted With successfully !!');;
     }
+
+    #############  Rechercher Users ##############
 
     public function user_search(Request $request)
     {

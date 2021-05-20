@@ -7,7 +7,7 @@
 
 
         <div class="row">
-            <div class="col-3" style="margin-top:70px;">
+            <div class="col-sm-4" style="margin-top:70px;">
                 <ul class="list-group" style="color:white;border-radius:0%;">
                     <li class="list-group-item bg-danger disabled" style="color:white;" aria-disabled="true"><i class="fas fa-align-left"></i>&nbsp;&nbsp;All Categories</li>
                     @foreach(App\Categorie::all() as $category)
@@ -15,7 +15,7 @@
                     @endforeach
                   </ul>
             </div>
-            <div class="col-9">
+            <div class="col-sm-8">
                 <div id="carouselExampleFade" class="carousel slide carousel-fade"  data-bs-ride="carousel">
                     <div class="carousel-inner" style="height:400px;">
                         <div class="carousel-item active">
@@ -51,7 +51,7 @@
         <br>
         <br>
                 <div class="container">
-                    <div class="owl-carousel promotion-card owl-theme">
+                    <div class="row row-cols-1 row-cols-md-3" >
                         @foreach($promotions as $promotion)
                             <div class="item mt-3">
                                 <div class="card">
@@ -319,5 +319,5 @@
                     }
                 });
             </script>
-    
+
 @endsection

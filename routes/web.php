@@ -113,7 +113,7 @@ Route::get('Multi-Command-Products-List/{id}', 'AdminController@get_command_prod
 Route::get('Search-Check-Order', 'AdminController@search_mulit_order')->name('search.multi.order');
 Route::get('Mulit-Check-Order/{id}', 'AdminController@edit_multi_order')->name('edit.multi.order');
 Route::post('Update-Check-Order', 'AdminController@update_multi_order')->name('update.multi.order');
-Route::post('Delete-Check-Order/{id}', 'AdminController@delete_multi_order')->name('delete.multi.order');
+Route::post('Delete-Check-Orders/{id}', 'AdminController@delete_multi_order')->name('delete.multi.order');
 
 
 ############### Category Routes #######################
@@ -143,6 +143,13 @@ Route::get('Edit/User/{id}', 'AdminController@user_edit')->name('edit.user');
 Route::post('Update/User', 'AdminController@user_update')->name('update.user');
 Route::post('Delete/User', 'AdminController@user_delete')->name('delete.user');
 Route::get('Search/User', 'AdminController@user_search')->name('search.user');
+
+
+################## Payment ###########################
+
+Route::get('Payment', 'PaymentController@index')->name('payment.index');
+
+Route::post('Store-Payment', 'PaymentController@store')->name('payment.store');
 
 
 

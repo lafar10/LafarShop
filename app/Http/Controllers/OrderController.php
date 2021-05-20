@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Cart;
 use App\User;
 use App\Check;
 use App\Order;
 use App\Product;
-use App\Cart;
-use DB;
+use Stripe\Charge;
+use Stripe\Stripe;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
@@ -20,6 +25,8 @@ class OrderController extends Controller
 
         return view('store.orders', compact('products'));
     }
+
+    #############  Ajouter Single Command ##############
 
     public function store(Request $request)
     {
@@ -62,8 +69,12 @@ class OrderController extends Controller
     }
 
 
+    #############  Ajouter Multi Commands #############
+
     public function check_store(Request $request)
     {
+
+
         Cart::where('user_id', Auth::id())->update([
             'etat' => "on"
         ]);

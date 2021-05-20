@@ -12,9 +12,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>LRStore</title>
-
+    @yield('extra-script')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/client.js') }}" defer></script>
 
 
 

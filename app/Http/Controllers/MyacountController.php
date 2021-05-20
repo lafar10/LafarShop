@@ -9,12 +9,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class MyacountController extends Controller
 {
+
+    #############  User Compte Details ##############
+
     public function index($id)
     {
         $user = User::find($id);
 
         return view('store.my_acount', compact('user'));
     }
+
+    ############# Modifier User Compte Details ##############
 
     public function update(Request $request, $id)
     {

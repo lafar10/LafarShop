@@ -13,11 +13,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ReviewController extends Controller
 {
+
+    #############  Liste de Panier #############
+
     public function index()
     {
         $carts = Cart::where('user_id', Auth::id())->where('etat', 'on')->where('conf_order', 'off')->get();
         return view('store.my_order', compact('carts'));
     }
+
+    #############  Liste de Reviews #############
 
     public function get_review_page(Request $request, $id)
     {
@@ -30,6 +35,7 @@ class ReviewController extends Controller
         return view('store.reviews', compact('carts'));
     }
 
+    #############  Ajouter Reviews #############
 
     public function store(Request $request)
     {

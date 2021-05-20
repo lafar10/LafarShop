@@ -4,6 +4,7 @@
 @section('content')
 
         <br>
+        @if(Auth::check())
             <div class="container">
                 <h4>My Cart List</h4>
                     <hr style="color:red;width:140px;">
@@ -97,6 +98,13 @@
                     </div>
 
             </div>
+            @else
+
+                <div class="d-flex justify-content-center">
+                    <h3>Cart Empty</h3>
+                </div>
+
+            @endif
 
 @endsection
 
@@ -117,7 +125,7 @@ $('#quantity').click(function (e) {
         'price_total':$('#Price').val()*$('#quantity').val(),
             },
         success: function (response) {
-            
+
         }
     });
 });

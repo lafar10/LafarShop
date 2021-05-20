@@ -10,11 +10,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class WishController extends Controller
 {
+
+    #############  Liste de Coeur #############
+
     public function index()
     {
         $wishes = Wish::where('user_id', Auth::id())->get();
         return view('store.wish', compact('wishes'));
     }
+
+    #############  Ajouter Produit Coeur #############
 
     public function store(Request $request)
     {
@@ -36,6 +41,8 @@ class WishController extends Controller
             return redirect()->route('login');
         }
     }
+
+    #############  Supprimer Produit Coeur #############
 
     public function destroy($id)
     {

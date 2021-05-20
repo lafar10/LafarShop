@@ -9,11 +9,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
+
+    #############  Liste Panier ##############
+
     public function index()
     {
         $carts = Cart::where('user_id', Auth::id())->where('etat', 'off')->get();
         return view('store.cart', compact('carts'));
     }
+
+    #############  Ajouter Panier ##############
 
     public function store(Request $request)
     {
@@ -44,6 +49,9 @@ class CartController extends Controller
         }
     }
 
+
+    #############  Supprimer Panier ##############
+
     public function destroy($id)
     {
         $carts = Cart::findOrFail($id);
@@ -54,6 +62,8 @@ class CartController extends Controller
         $carts->delete();
         return redirect()->route('cart-index')->with('toast_success', 'Product Was Deleted From Cart With Success !!');
     }
+
+    #############  Modifier Panier ##############
 
     public function update_cart(Request $request, $id)
     {

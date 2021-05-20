@@ -9,7 +9,7 @@
 </div>
 
         <div class="container">
-                   
+
                 <br>
                 <form action="{{route('search.order.check')}}" method="get" class="d-flex">
                     <label style="margin-top:5px;" >Search For a Order :</label> &nbsp;<input type="search" name="search_order" class="form-control" style="width:200px;">&nbsp;&nbsp;

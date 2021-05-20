@@ -20,6 +20,8 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+    #############  Liste des Produits en Acceil ##############
+
     public function index()
     {
         $promotions = DB::table('products')->inRandomOrder()->take(6)->get();
@@ -41,6 +43,8 @@ class HomeController extends Controller
         return view('store.details', compact('promotions', 'comments'));
     }
 
+    #############  Lister les Produits par ID ##############
+
     public function get_by_categories($id)
     {
         $all = Product::where('id_cat', $id)->get();
@@ -48,12 +52,16 @@ class HomeController extends Controller
         return view('store.all', compact('all'));
     }
 
+    #############  Liste des Produits en Promotion ##############
+
     public function latest()
     {
         $all = DB::table('products')->inRandomOrder()->where('promotion', '=', 'oui')->get();
 
         return view('store.all', compact('all'));
     }
+
+    #############  Rechercher des Produits en Acceil ##############
 
     public function search(Request $request)
     {
@@ -65,6 +73,8 @@ class HomeController extends Controller
         return view('store.all')->with('all', $all);
     }
 
+    #############  Produits Details ##############
+
     public function get_details($id)
     {
         $details = Product::find($id);
@@ -75,6 +85,9 @@ class HomeController extends Controller
 
         return view('store.details', compact('promotions', 'details', 'comments'));
     }
+
+
+    #############  Liste de toutes les Produits en Promotion ##############
 
     public function get_all_promotion()
     {
@@ -90,12 +103,16 @@ class HomeController extends Controller
         return view('store.all', compact('all'));
     }
 
+    #############  Liste des Produits en des femmes ##############
+
     public function get_womens_models()
     {
         $all = DB::table('products')->where('id_cat', '=', '1')->get();
 
         return view('store.all', compact('all'));
     }
+
+    #############  Liste des Produits en des Hommes ##############
 
     public function get_mens_models()
     {
